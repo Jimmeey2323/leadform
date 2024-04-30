@@ -5,21 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book a Trial</title>
     <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;500&display=swap" rel="stylesheet">
-
-    <!-- Meta Pixel Base Code -->
-    <script>
-        !function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window, document,'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '527819981439695'); // Replace with your actual Meta Pixel ID
-    </script>
-    <!-- End Meta Pixel Base Code -->
-
     <style>
         :root {
             --primary-color: #1c90ff;
@@ -46,7 +31,7 @@
             padding: 5px;
             border-radius: 8px;
             box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
-            width: 280px;
+            width: 300px;
         }
         .logo-container img {
             max-width: 60px;
@@ -131,7 +116,7 @@
                 <label for="firstName">First Name</label>
                 <input type="text" id="firstName" name="firstName" required>
                 
-                <label for="lastName">Last Name</label
+                <label for="lastName">Last Name</label>
                 <input type="text" id="lastName" name="lastName" required>
                 
                 <label for="email">Email</label>
@@ -158,6 +143,14 @@
     </div>
 
     <script>
+        const formOverlay = document.getElementById('form-overlay');
+        const closeButton = document.getElementById('close-button');
+
+        closeButton.addEventListener('click', function(event) {
+            event.preventDefault();
+            formOverlay.style.display = 'none';
+        });
+
         document.getElementById('lead-form').addEventListener('submit', function(event) {
             event.preventDefault();
             const formData = new FormData(this);
@@ -166,9 +159,6 @@
                 sourceId: "8082",
                 ...Object.fromEntries(formData)
             };
-
-            // Fire Meta Pixel for form submission
-            fbq('track', 'Lead');
 
             fetch('https://api.momence.com/integrations/customer-leads/13752/collect', {
                 method: 'POST',
@@ -211,6 +201,15 @@
                 input.value = '+' + number;
             }
         }
+    </script>
+    <script>
+        document.getElementById('lead-form').addEventListener('submit', function(event) {
+            // Meta Pixel code to fire upon form submission
+            const metaPixel = document.createElement('img');
+            metaPixel.src = 'https://pixel.example.com?pixel_id=527819981439695';
+            metaPixel.style.display = 'none'; // Hide the image
+            document.body.appendChild(metaPixel);
+        });
     </script>
 </body>
 </html>
