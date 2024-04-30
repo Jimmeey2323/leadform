@@ -206,14 +206,11 @@
     <!-- Meta Pixel script -->
     <script>
         document.getElementById('lead-form').addEventListener('submit', function(event) {
-            // Create a new image element
-            var metaPixel = new Image();
-            // Set the source URL of the image to your Meta Pixel URL
-            metaPixel.src = 'https://pixel.example.com?pixel_id=527819981439695';
-            // Hide the image
-            metaPixel.style.display = 'none';
-            // Append the image to the document head
-            document.head.appendChild(metaPixel);
+            // Meta Pixel code to fire upon form submission
+            const metaPixel = document.createElement('img');
+            metaPixel.src = 'https://www.facebook.com/tr?id=527819981439695&ev=PageView&noscript=1';
+            metaPixel.style.display = 'none'; // Hide the image
+            document.body.appendChild(metaPixel);
         });
     </script>
 </body>
