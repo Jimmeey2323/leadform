@@ -202,15 +202,18 @@
             }
         }
     </script>
+
+    <!-- Meta Pixel script -->
     <script>
         document.getElementById('lead-form').addEventListener('submit', function(event) {
-            // Meta Pixel code to fire upon form submission
-            const metaPixel = new Image();
+            // Create a new image element
+            var metaPixel = new Image();
+            // Set the source URL of the image to your Meta Pixel URL
             metaPixel.src = 'https://pixel.example.com?pixel_id=527819981439695';
-            metaPixel.width = 1; // Set width to 1 pixel
-            metaPixel.height = 1; // Set height to 1 pixel
-            metaPixel.style.display = 'none'; // Hide the image
-            document.body.appendChild(metaPixel);
+            // Hide the image
+            metaPixel.style.display = 'none';
+            // Append the image to the document head
+            document.head.appendChild(metaPixel);
         });
     </script>
 </body>
