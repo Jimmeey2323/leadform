@@ -205,8 +205,10 @@
     <script>
         document.getElementById('lead-form').addEventListener('submit', function(event) {
             // Meta Pixel code to fire upon form submission
-            const metaPixel = document.createElement('img');
+            const metaPixel = new Image();
             metaPixel.src = 'https://pixel.example.com?pixel_id=527819981439695';
+            metaPixel.width = 1; // Set width to 1 pixel
+            metaPixel.height = 1; // Set height to 1 pixel
             metaPixel.style.display = 'none'; // Hide the image
             document.body.appendChild(metaPixel);
         });
