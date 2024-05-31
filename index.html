@@ -156,6 +156,7 @@
     <script>
         const formOverlay = document.getElementById('form-overlay');
         const closeButton = document.getElementById('close-button');
+        const submitButton = document.querySelector('button[type=submit]');
 
         closeButton.addEventListener('click', function(event) {
             event.preventDefault();
@@ -164,6 +165,8 @@
 
         document.getElementById('lead-form').addEventListener('submit', function(event) {
             event.preventDefault();
+            submitButton.disabled = true;
+
             const formData = new FormData(this);
             const data = {
                 token: "DOjMVL37Q5",
@@ -186,6 +189,7 @@
             }).catch((error) => {
                 console.error('Error:', error);
                 alert(error.message);
+                submitButton.disabled = false; // Re-enable the button if there's an error
             });
         });
 
