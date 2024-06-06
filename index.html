@@ -138,7 +138,7 @@
                         <option value="Evening">Evening</option>
                     </select>
                 
-                <label for="time">Select a Studio Location<span class="required">*</span></label>
+                <label for="center">Select a Studio Location<span class="required">*</span></label>
                     <select id="center" name="center" required>
                         <option value="" disabled selected>Select Preferred Studio Location</option>
                         <option value="Supreme Headquarters, Bandra">Supreme Headquarters, Bandra</option>
@@ -166,6 +166,7 @@
         document.getElementById('lead-form').addEventListener('submit', function(event) {
             event.preventDefault();
             submitButton.disabled = true;
+            submitButton.innerText = 'Submitting...';
 
             const formData = new FormData(this);
             const data = {
@@ -185,11 +186,14 @@
                 if (!response.ok) {
                     throw new Error('Failed to submit: ' + response.statusText);
                 }
+                // Trigger Meta Pixel only on successful submission
+                fbq('track', 'Lead');
                 window.top.location.href = 'https://momence.com/u/physique-57-india-fffoSp';
             }).catch((error) => {
                 console.error('Error:', error);
                 alert(error.message);
                 submitButton.disabled = false; // Re-enable the button if there's an error
+                submitButton.innerText = 'Submit';
             });
         });
 
@@ -219,20 +223,20 @@
     </script>
 
     <!-- Meta Pixel script -->
-<script>
- !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window,document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '527819981439695');
-  fbq('track', 'PageView');
-</script>
-<noscript>
-  <img src="https://www.facebook.com/tr?id=527819981439695&ev=PageView&noscript=1" />
-</noscript>
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window,document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '527819981439695');
+        fbq('track', 'PageView');
+    </script>
+    <noscript>
+        <img src="https://www.facebook.com/tr?id=527819981439695&ev=PageView&noscript=1" />
+    </noscript>
 </body>
 </html>
